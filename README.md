@@ -26,19 +26,23 @@ https://github.com/espressif/esp-idf/issues/10790 (Example Onewire DS18B20 does 
     └── README.md                  This is the file you are currently reading
     ```
 
-## Пояснения / a few tips
-
-Про "REQUIRES esp_timer": https://esp32developer.com/programming-in-c-c/compilers-and-ides/esp-idf/compiler/requires-list
-
-### Configure the project
-
+### Required actions
 ```
+mkdir -p ~/esp
+cd ~/esp
+git clone --recursive https://github.com/espressif/esp-idf.git
+git clone --recursive https://github.com/TimofeyPro/ESP32-ESP-IDF-HTTP-Server-DS18B20.git
+. $HOME/esp/esp-idf/export.sh
 idf.py menuconfig
+idf.py build
+sudo chmod a+rw /dev/ttyUSB0
+idf.py -p /dev/ttyUSB0 flash monitorg
 ```
 * Open the project configuration menu (`idf.py menuconfig`) to configure Wi-Fi.
+* Check the data on mibile at http://yourIP/sensor
 
-
-```
+## Пояснения / a few tips
+Про "REQUIRES esp_timer": https://esp32developer.com/programming-in-c-c/compilers-and-ides/esp-idf/compiler/requires-list
 
 ## Troubleshooting
 * `idf.py menuconfig` → Component config → HTTP Server → (2048) Max HTTP Request Header Length
