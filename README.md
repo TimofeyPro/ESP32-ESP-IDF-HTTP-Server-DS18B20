@@ -1,5 +1,5 @@
-# ESP32 Web Server (ESP-IDF) displaying temperature data from two DS18B20 sensors.
-# ESP32 Web Server (ESP-IDF), отражающий данные о температуре с двух датчиков DS18B20.
+# ESP32 Web Server (ESP-IDF v5.0.1) displaying temperature data from two DS18B20 sensors.
+# ESP32 Web Server (ESP-IDF v5.0.1), отражающий данные о температуре с двух датчиков DS18B20.
 
 The Espressif library https://github.com/espressif/esp-idf/tree/master/examples/peripherals/rmt/onewire_ds18b20 is not stable yet:
 https://github.com/espressif/esp-idf/issues/10790 (Example Onewire DS18B20 does not work). Therefore, a solution re DS18B20 Sensors
