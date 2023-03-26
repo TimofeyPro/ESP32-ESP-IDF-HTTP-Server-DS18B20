@@ -8,6 +8,8 @@ is taken from feelfreelinux: https://github.com/feelfreelinux/ds18b20
 Библиотека Espressif https://github.com/espressif/esp-idf/tree/master/examples/peripherals/rmt/onewire_ds18b20 стабильно пока не работает:
 https://github.com/espressif/esp-idf/issues/10790 (Example Onewire DS18B20 does not work). Поэтому решение в части получения данных с датчика взято у feelfreelinux: https://github.com/feelfreelinux/ds18b20
 
+Temperature readings from two sensors + their 64-bit serial number, which is used to address sensors on the 1-Wire bus, are displayed on the mobile phone screen at the address “http://yourIP/sensor” as well as MAC address of the controller and the system time of the controller (the time is displayed at the time the browser was updated).
+This solution synchronizes the system time of the controller with the SNTP (Simple Network Time Protocol) server [pool.ntp.org] via WiFI using the standard example: using "LwIP SNTP module and time functions".
 
 ## Структура / Project structure
 
