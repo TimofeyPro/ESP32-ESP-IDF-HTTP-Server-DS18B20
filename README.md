@@ -15,13 +15,13 @@ https://github.com/espressif/esp-idf/issues/10790 (Example Onewire DS18B20 does 
     ├── CMakeLists.txt
     ├── main
     │   ├── CMakeLists.txt
+    │   ├── Kconfig.projbuild
     │   ├── main.c
     ├── components
     │   ├── CMakeLists.txt    
     │   ├── dallas.c
     │   ├── ds18b20.c  
     │   └── include  
-    │         ├── CMakeLists.txt  
     │         └── ds18b20.h
     └── README.md                  This is the file you are currently reading
     ```
