@@ -226,13 +226,22 @@ esp_err_t send_web_page4(httpd_req_t *req){
 
 esp_err_t send_web_page5(httpd_req_t *req){
      int response;
-     //delay_tim(100); // задержка для более стабильного получения данных
      ds18b20_requestTemperatures();
-     //delay_tim(100);
      float temp30 = ds18b20_getTempC((DeviceAddress *)tempSensors[0]);
-     //delay_tim(100);
      float temp40 = ds18b20_getTempC((DeviceAddress *)tempSensors[1]);
-     printf("Temperatures on mobile screen: %0.1fC %0.1fC\n",  temp30, temp40);
+       if (temp30 > 110 || temp30 < -50) {
+         printf("Error: %0.2fC on Sensor№1. Requested new temperature data.\n",  temp30);
+         delay_tim(100);
+         ds18b20_requestTemperatures();
+         temp30 = ds18b20_getTempC((DeviceAddress *)tempSensors[0]);
+         }
+       if (temp40 > 110 || temp40 < -50) {
+         printf("Error: %0.2fC on Sensor№2. Requested new temperature data.\n",  temp40);
+         delay_tim(100);
+         ds18b20_requestTemperatures();
+         temp40 = ds18b20_getTempC((DeviceAddress *)tempSensors[1]);
+       }
+     printf("Temperatures on mobile screen: %0.2fC %0.2fC\n",  temp30, temp40);
      char response_data[sizeof(html_page5) + 25];
      memset(response_data, 0, sizeof(response_data));
      sprintf(response_data, html_page5,  temp30, tempSensors[0][0],tempSensors[0][1],tempSensors[0][2],tempSensors[0][3],tempSensors[0][4],tempSensors[0][5],tempSensors[0][6],tempSensors[0][7], temp40,tempSensors[1][0],tempSensors[1][1],tempSensors[1][2],tempSensors[1][3],tempSensors[1][4],tempSensors[1][5],tempSensors[1][6],tempSensors[1][7]);
@@ -463,8 +472,8 @@ printf("Address 1: 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x \n", 
   float temp2 = ds18b20_getTempF((DeviceAddress *)tempSensors[1]);
   float temp3 = ds18b20_getTempC((DeviceAddress *)tempSensors[0]);
   float temp4 = ds18b20_getTempC((DeviceAddress *)tempSensors[1]);
-  printf("Temperatures: %0.1fF %0.1fF\n", temp1,temp2);
-  printf("Temperatures: %0.1fC %0.1fC\n", temp3,temp4);
+  printf("Temperatures: %0.2fF %0.2fF\n", temp1,temp2);
+  printf("Temperatures: %0.2fC %0.2fC\n", temp3,temp4);
 }
 
 /* System time
